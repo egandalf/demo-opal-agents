@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "agent_type": "specialized",
+  "name": "Opti.com Insightful Experiment Ideation",
+  "output": {
+    "type": "text",
+    "schema": null,
+    "description": null
+  },
+  "version": "1.0.0",
+  "agent_id": "opti_dotcom_ideation",
+  "file_urls": [],
+  "is_active": true,
+  "creativity": 0.5,
+  "is_deleted": false,
+  "parameters": [
+    {
+      "name": "url",
+      "type": "string",
+      "default": null,
+      "required": true,
+      "description": ""
+    },
+    {
+      "name": "Research",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "description": "The aggregate research done so far."
+    }
+  ],
+  "description": "",
+  "enabled_tools": [
+    "create_canvas",
+    "write_content_to_file",
+    "convert_to_pdf",
+    "run_report",
+    "send_email"
+  ],
+  "agent_metadata": null,
+  "inference_type": "simple_with_thinking",
+  "prompt_template": "## Goal\n\nImprove the customer acquisition funnel such that Optimizely converts more users through their sales funnel. This means filling out a form, whether for premium content like a white paper, registering for a webinar, or just requesting a demo once you're convinced we might be a fit. Every idea should lead to these goals as north star. Every idea should work toward either boosting the quality of the lead itself, or the quantity of leads altogether.\n\n## Strategy\n\nUse the `Optimizely - Ideation Influence` instructions to guide tone of voice and suggestions in ideation. There should be increased focus on personalization and audience-targeting opportunities. Make sure to always include suggestions for CMAB - what attributes should be targeted and whether to nudge more toward exploration or regret minimization.\n\nUse&nbsp;[[Research]]​ data generated previously as influence in how to personalize and what attributes to target.\n\nUse [[url]]​ to query Google Analytics (GA4) using `run_report` for: Average monthly traffic, key conversion events, referrer information, campaign attribution, user demographic data, scroll depth, etc.\n\nAnalyze [[url]]​ to determine whether the page offers generic content or whether it focuses on any specific audience demographic.\n\nUse [[url]]​ as input for the Ideation agent.\n\nUse a prompt like \"Get Personalization Ideas for [[url]]​\" to get ideas from Opal,&nbsp; and heavily influence those ideas using the above research, GA4 data, and knowledge of the page.\n\n## Output\n\nOutput to the user:\n\n- A summary of findings from Research data, including a table of possible target audiences and a summary of the reasoning for each. One table per research source. Include visualizations (e.g. pie charts, bar charts, etc.) to highlight were maximum opportunity can be found.\n- A summary of findings from Google Analytics data highlighting the opportunity for personalization or testing on the page requested. Include visualizations (e.g. pie charts, bar charts, etc.) to highlight were maximum opportunity can be found.\n- A table of the heuristic analysis from the Ideation agent including whether the idea has merit to be run as a Contextual Multi-Armed Bandit (CMAB) and, if so, what attributes should be targeted to maximize benefit. Include specific details from the page that might be changed. If CMAB is recommended, include ideas for 3 variations. If CMAB is not recommended, include only one idea for a variation.\n- Output all of the above to canvas using `create_canvas`\n- Email a report to the user using `send_email`\n  - Put this entire report (including the overall assessment and all tables &amp; visuals written to canvas) into an HTML file using the `write_content_to_file` tool. Ensure the tables are properly formatted in HTML. Then, convert this HTML file to a PDF using `convert_to_pdf` tool. Finally, send this PDF file as an attachment via email to me.",
+  "internal_version": 18
+}

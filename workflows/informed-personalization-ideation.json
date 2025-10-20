@@ -1,0 +1,107 @@
+{
+  "schema_version": "1.0",
+  "agent_type": "workflow",
+  "name": "Informed Personalization Ideation",
+  "description": "",
+  "version": "",
+  "agent_id": "informed_personalization",
+  "objective": "",
+  "plan": "",
+  "is_active": true,
+  "is_deleted": false,
+  "agent_metadata": {
+    "nodes": [
+      {
+        "id": "61a00eef-c629-46cd-b199-bef20ad0d6ef",
+        "measured": {
+          "width": 248,
+          "height": 108
+        },
+        "position": {
+          "x": 1148,
+          "y": 223
+        }
+      },
+      {
+        "id": "116723dd-3ff1-4027-b451-3c9e8b71aad3",
+        "measured": {
+          "width": 248,
+          "height": 108
+        },
+        "position": {
+          "x": 837,
+          "y": 297
+        }
+      },
+      {
+        "id": "96728461-189d-4798-ae76-090b21e383d4",
+        "measured": {
+          "width": 248,
+          "height": 108
+        },
+        "position": {
+          "x": 807,
+          "y": 135
+        }
+      },
+      {
+        "id": "90d38940-9d01-4d93-b43d-89c0d09ade6d",
+        "measured": {
+          "width": 248,
+          "height": 108
+        },
+        "position": {
+          "x": 497,
+          "y": 230
+        }
+      }
+    ]
+  },
+  "internal_version": 2,
+  "steps": [
+    {
+      "step_id": "116723dd-3ff1-4027-b451-3c9e8b71aad3",
+      "step_type": "specialized",
+      "name": "SFDC Account Data Researcher",
+      "description": "",
+      "agent_id": "sfdc_acct_research",
+      "parameters_schema": {},
+      "next_step_id": "61a00eef-c629-46cd-b199-bef20ad0d6ef",
+      "timeout_seconds": 3600
+    },
+    {
+      "step_id": "96728461-189d-4798-ae76-090b21e383d4",
+      "step_type": "specialized",
+      "name": "SFDC Lead Data Researcher",
+      "description": "",
+      "agent_id": "sfdc_lead_research",
+      "parameters_schema": {},
+      "next_step_id": "116723dd-3ff1-4027-b451-3c9e8b71aad3",
+      "timeout_seconds": 3600
+    },
+    {
+      "step_id": "61a00eef-c629-46cd-b199-bef20ad0d6ef",
+      "step_type": "specialized",
+      "name": "Opti.com Insightful Experiment Ideation copy",
+      "description": "",
+      "agent_id": "opti_dotcom_ideation",
+      "parameters_schema": {},
+      "next_step_id": null,
+      "timeout_seconds": 3600
+    }
+  ],
+  "specialized_agents_required": [
+    "sfdc_acct_research",
+    "sfdc_lead_research",
+    "opti_dotcom_ideation"
+  ],
+  "triggers": [
+    {
+      "trigger_id": "90d38940-9d01-4d93-b43d-89c0d09ade6d",
+      "trigger_type": "message",
+      "name": "Optimizely.com Personalization Trigger",
+      "description": "Trigger when user sends a message",
+      "is_active": true
+    }
+  ]
+}
